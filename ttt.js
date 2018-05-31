@@ -33,6 +33,7 @@ var arrayWinCases = [
 function checkWinner(){
 
   var temp_array = [];
+  var temp_array2 = [];
 
   for(var i=0; i<tdAll.length; i++){
     console.log('checking' + i);
@@ -40,12 +41,27 @@ function checkWinner(){
       if(tdAll[i].innerHTML === 'X'){
         temp_array.push('t'+(i+1));
       }
-
-      for(var j=0; j<arrayWinCases.length; j++){
-        if(temp_array == arrayWinCases[j]){
-          endCase.style.display = 'block';
-        }
+      else if(tdAll[i].innerHTML === 'O'){
+        temp_array2.push('t'+(i+1));
       }
+  }
 
+  for(var i=0; i<arrayWinCases.length; i++){
+    var condi1 = temp_array.indexOf(arrayWinCases[i][0]);
+    var condi2 = temp_array.indexOf(arrayWinCases[i][1]);
+    var condi3 = temp_array.indexOf(arrayWinCases[i][2]);
+
+    var condi4 = temp_array2.indexOf(arrayWinCases[i][0]);
+    var condi5 = temp_array2.indexOf(arrayWinCases[i][1]);
+    var condi6 = temp_array2.indexOf(arrayWinCases[i][2]);
+
+    if(condi1 !== -1 && condi2 !== -1 && condi3 !== -1){
+      endCase.style.display = 'block';
+      return;
+    }
+    else if(condi4 !== -1 && condi5 !== -1 && condi6 !== -1){
+      endCase.style.display = 'block';
+      return;
+    }
   }
 }
